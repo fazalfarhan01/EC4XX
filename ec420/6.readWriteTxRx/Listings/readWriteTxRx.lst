@@ -1,0 +1,35 @@
+A51 MACRO ASSEMBLER  READWRITETXRX                                                        04/21/2020 19:33:12 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\readWriteTxRx.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE readWriteTxRx.asm SET(SMALL) DEBUG PRINT(.\Listings\readWriteTxRx.lst) 
+                      OBJECT(.\Objects\readWriteTxRx.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1                             org 0000h
+0000 7590FF            2                                     mov p1, #0ffh                   ;initiallise as input port
+                       3                                     
+0003 E590              4     doItAgain:              mov a, p1
+0005 F5A0              5                                     mov p2, a
+0007 80FA              6                                     sjmp doItAgain
+                       7                                     
+                       8                                     end
+A51 MACRO ASSEMBLER  READWRITETXRX                                                        04/21/2020 19:33:12 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DOITAGAIN. . . . .  C ADDR   0003H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

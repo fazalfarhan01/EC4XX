@@ -1,0 +1,60 @@
+C51 COMPILER V9.60.0.0   SWITCHWITHSERIAL                                                  04/21/2020 19:26:13 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE SWITCHWITHSERIAL
+OBJECT MODULE PLACED IN .\Objects\switchWithSerial.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE switchWithSerial.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\L
+                    -istings\switchWithSerial.lst) TABS(2) OBJECT(.\Objects\switchWithSerial.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          
+   3          sbit button = P2^0;
+   4          
+   5          void initialliseUART(){
+   6   1          TH1 = -3;       //for a baud rate for 9600
+   7   1          TL1 = -3;
+   8   1          SCON = 0x40;
+   9   1          TMOD = 0x20;
+  10   1          TR1 = 1;
+  11   1      }
+  12          
+  13          void send(char *string){
+  14   1          int i;
+  15   1          for(i=0;string[i]!=0;i++){
+  16   2              SBUF = string[i];
+  17   2              while(TI!=1){
+  18   3                  ;
+  19   3              }
+  20   2              TI = 0;
+  21   2          }
+  22   1      }
+  23          
+  24          
+  25          void main(){
+  26   1          initialliseUART();
+  27   1          button = 1;
+  28   1          while (1){
+  29   2              if(button == 0){
+  30   3                  send("HELLO");
+  31   3              }
+  32   2              else{
+  33   3                  send("WELCOME");
+  34   3              }
+  35   2          }
+  36   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     90    ----
+   CONSTANT SIZE    =     14    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

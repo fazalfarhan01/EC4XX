@@ -1,0 +1,3 @@
+".\Objects\readWriteTxRx.2.obj" 
+TO ".\Objects\readWriteTxRx" 
+PRINT(".\Listings\readWriteTxRx.m51") RAMSIZE(256) 

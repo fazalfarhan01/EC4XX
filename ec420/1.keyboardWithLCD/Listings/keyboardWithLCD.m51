@@ -1,0 +1,163 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    04/20/2020  18:32:37  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\keyboardWithLCD.obj TO .\Objects\keyboardWithLCD PRINT (.\Listings\keyboardWithLCD
+>> .m51) RAMSIZE (256) CODE (0X0000-0XFFFF)
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\keyboardWithLCD.obj (KEYBOARDWITHLCD)
+
+
+LINK MAP OF MODULE:  .\Objects\keyboardWithLCD (KEYBOARDWITHLCD)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0667H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\keyboardWithLCD (KEYBOARDWITHLCD)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        KEYBOARDWITHLCD
+  C:0648H         SYMBOL        COMMAND
+  C:0000H         SYMBOL        CONTINUEREADING
+  C:065EH         SYMBOL        DELAY
+  C:0653H         SYMBOL        DISPLAY
+  C:0065H         SYMBOL        FINDKEY
+  C:006DH         SYMBOL        FOUND
+  C:000DH         SYMBOL        KEYPRESS
+  C:003DH         SYMBOL        KEYPRESSINROW1
+  C:0042H         SYMBOL        KEYPRESSINROW2
+  C:0047H         SYMBOL        KEYPRESSINROW3
+  C:004CH         SYMBOL        KEYPRESSINROW4
+  C:0051H         SYMBOL        KEYPRESSINROW5
+  C:0056H         SYMBOL        KEYPRESSINROW6
+  C:005BH         SYMBOL        KEYPRESSINROW7
+  C:0060H         SYMBOL        KEYPRESSINROW8
+  C:063FH         SYMBOL        LCDONANDCLEAR
+  C:0662H         SYMBOL        LOOP1
+  C:0660H         SYMBOL        LOOP2
+  D:0090H         SYMBOL        P1
+  D:00A0H         SYMBOL        P2
+  D:00B0H         SYMBOL        P3
+  C:0667H         SYMBOL        PROGRAMENDING
+  C:0067H         SYMBOL        REPEATAGAIN
+  C:0600H         SYMBOL        ROW1
+  C:0608H         SYMBOL        ROW2
+  C:0610H         SYMBOL        ROW3
+  C:0618H         SYMBOL        ROW4
+  C:0620H         SYMBOL        ROW5
+  C:0628H         SYMBOL        ROW6
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/20/2020  18:32:37  PAGE 2
+
+
+  C:0630H         SYMBOL        ROW7
+  C:0630H         SYMBOL        ROW8
+  C:0630H         SYMBOL        SETCURSORTOFIRSTLINE
+  C:0635H         SYMBOL        SETCURSORTOSECONDLINE
+  C:063AH         SYMBOL        START
+  C:0000H         LINE#         4
+  C:0003H         LINE#         5
+  C:0006H         LINE#         7
+  C:0008H         LINE#         8
+  C:000BH         LINE#         9
+  C:000DH         LINE#         12
+  C:0010H         LINE#         13
+  C:0012H         LINE#         14
+  C:0015H         LINE#         16
+  C:0018H         LINE#         17
+  C:001AH         LINE#         18
+  C:001DH         LINE#         20
+  C:0020H         LINE#         21
+  C:0022H         LINE#         22
+  C:0025H         LINE#         24
+  C:0028H         LINE#         25
+  C:002AH         LINE#         26
+  C:002DH         LINE#         28
+  C:0030H         LINE#         29
+  C:0032H         LINE#         30
+  C:0035H         LINE#         32
+  C:0038H         LINE#         33
+  C:003AH         LINE#         34
+  C:003DH         LINE#         45
+  C:0040H         LINE#         46
+  C:0042H         LINE#         47
+  C:0045H         LINE#         48
+  C:0047H         LINE#         49
+  C:004AH         LINE#         50
+  C:004CH         LINE#         51
+  C:004FH         LINE#         52
+  C:0051H         LINE#         53
+  C:0054H         LINE#         54
+  C:0056H         LINE#         55
+  C:0059H         LINE#         56
+  C:005BH         LINE#         57
+  C:005EH         LINE#         58
+  C:0060H         LINE#         59
+  C:0063H         LINE#         60
+  C:0065H         LINE#         62
+  C:0067H         LINE#         63
+  C:0068H         LINE#         64
+  C:006AH         LINE#         65
+  C:006BH         LINE#         66
+  C:006DH         LINE#         68
+  C:006FH         LINE#         69
+  C:0071H         LINE#         70
+  C:0073H         LINE#         71
+  C:0074H         LINE#         72
+  C:0075H         LINE#         73
+  C:0077H         LINE#         74
+  C:0079H         LINE#         75
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/20/2020  18:32:37  PAGE 3
+
+
+  C:0630H         LINE#         88
+  C:0632H         LINE#         89
+  C:0634H         LINE#         90
+  C:0635H         LINE#         92
+  C:0637H         LINE#         93
+  C:0639H         LINE#         94
+  C:063AH         LINE#         96
+  C:063CH         LINE#         97
+  C:063EH         LINE#         98
+  C:063FH         LINE#         101
+  C:0641H         LINE#         102
+  C:0643H         LINE#         103
+  C:0645H         LINE#         104
+  C:0647H         LINE#         105
+  C:0648H         LINE#         108
+  C:064AH         LINE#         109
+  C:064CH         LINE#         110
+  C:064EH         LINE#         111
+  C:0650H         LINE#         112
+  C:0652H         LINE#         113
+  C:0653H         LINE#         116
+  C:0655H         LINE#         117
+  C:0657H         LINE#         118
+  C:0659H         LINE#         119
+  C:065BH         LINE#         120
+  C:065DH         LINE#         121
+  C:065EH         LINE#         123
+  C:0660H         LINE#         124
+  C:0662H         LINE#         125
+  C:0664H         LINE#         126
+  C:0666H         LINE#         127
+  -------         ENDMOD        KEYBOARDWITHLCD
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00E3H BYTE (11%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=1639
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

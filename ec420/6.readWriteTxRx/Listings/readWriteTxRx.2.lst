@@ -1,0 +1,50 @@
+C51 COMPILER V9.60.0.0   READWRITETXRX_2                                                   04/21/2020 21:31:22 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE READWRITETXRX_2
+OBJECT MODULE PLACED IN .\Objects\readWriteTxRx.2.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE readWriteTxRx.2.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Li
+                    -stings\readWriteTxRx.2.lst) TABS(2) OBJECT(.\Objects\readWriteTxRx.2.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          void initialliseUART(){
+   4   1          TH1 = -3;
+   5   1          TL1 = -3;
+   6   1          TMOD = 0x20;
+   7   1          SCON = 0x40;
+   8   1          TR1 = 1;
+   9   1      }
+  10          
+  11          
+  12          void main(){
+  13   1          unsigned char txData;
+  14   1          P1 = 0xff;          //initiallise as input port
+  15   1          initialliseUART();
+  16   1          while(1){
+  17   2              P2 = P1;
+  18   2              SBUF = P1;
+  19   2              while (TI!=1)
+  20   2              {
+  21   3                  ;
+  22   3              }
+  23   2              TI = 0;
+  24   2          }
+  25   1      }
+*** WARNING C280 IN LINE 13 OF readWriteTxRx.2.c: 'txData': unreferenced local variable
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     34    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,4 @@
+".\Objects\serialHello.obj" 
+TO ".\Objects\serialHello" 
+PRINT(".\Listings\serialHello.m51") RAMSIZE(256) 
+CODE( 0X0000-0XFFFF )

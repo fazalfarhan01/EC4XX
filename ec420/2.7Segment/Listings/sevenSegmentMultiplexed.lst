@@ -1,0 +1,198 @@
+A51 MACRO ASSEMBLER  SEVENSEGMENTMULTIPLEXED                                              04/20/2020 18:26:49 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\sevenSegmentMultiplexed.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE sevenSegmentMultiplexed.asm SET(SMALL) DEBUG PRINT(.\Listings\sevenSegm
+                      entMultiplexed.lst) OBJECT(.\Objects\sevenSegmentMultiplexed.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;8-7 Segment Display
+                       2     
+0000                   3                             org 0000h
+0000 7590FF            4                                     mov p1, #0ffh
+0003 75A000            5                                     mov p2, #00h
+                       6                                     
+0006 90050A            7     startOver:              mov dptr, #_H
+0009 1130              8                                     acall display1
+                       9                                     
+000B 90050B           10                                     mov dptr, #_E
+000E 113B             11                                     acall display2
+                      12                                     
+0010 90050C           13                                     mov dptr, #_L
+0013 1146             14                                     acall display3
+                      15                                     
+0015 90050C           16                                     mov dptr, #_L
+0018 1151             17                                     acall display4
+                      18                                     
+001A 90050D           19                                     mov dptr, #_O
+001D 115C             20                                     acall display5
+                      21                                     
+001F 90050D           22                                     mov dptr, #_O
+0022 1167             23                                     acall display6
+                      24                                     
+0024 90050D           25                                     mov dptr, #_O
+0027 1172             26                                     acall display7
+                      27                                     
+0029 90050D           28                                     mov dptr, #_O
+002C 117D             29                                     acall display8
+                      30                                     
+                      31                                     
+002E 80D6             32                                     sjmp startOver
+                      33                                     
+0030 C297             34     display1:               clr p1.7
+0032 E4               35                                     clr a
+0033 93               36                                     movc a, @a+dptr
+0034 F5A0             37                                     mov p2, a
+0036 11A4             38                                     acall lessDelay
+0038 D297             39                                     setb p1.7
+003A 22               40                                     ret
+                      41                                     
+003B C296             42     display2:               clr p1.6
+003D E4               43                                     clr a
+003E 93               44                                     movc a, @a+dptr
+003F F5A0             45                                     mov p2, a
+0041 11A4             46                                     acall lessDelay
+0043 D296             47                                     setb p1.6
+0045 22               48                                     ret
+                      49                                     
+0046 C295             50     display3:               clr p1.5
+0048 E4               51                                     clr a
+0049 93               52                                     movc a, @a+dptr
+004A F5A0             53                                     mov p2, a
+004C 11A4             54                                     acall lessDelay
+004E D295             55                                     setb p1.5
+0050 22               56                                     ret
+                      57                                     
+A51 MACRO ASSEMBLER  SEVENSEGMENTMULTIPLEXED                                              04/20/2020 18:26:49 PAGE     2
+
+0051 C294             58     display4:               clr p1.4
+0053 E4               59                                     clr a
+0054 93               60                                     movc a, @a+dptr
+0055 F5A0             61                                     mov p2, a
+0057 11A4             62                                     acall lessDelay
+0059 D294             63                                     setb p1.4
+005B 22               64                                     ret
+                      65                                     
+005C C293             66     display5:               clr p1.3
+005E E4               67                                     clr a
+005F 93               68                                     movc a, @a+dptr
+0060 F5A0             69                                     mov p2, a
+0062 11A4             70                                     acall lessDelay
+0064 D293             71                                     setb p1.3
+0066 22               72                                     ret
+                      73                                     
+0067 C292             74     display6:               clr p1.2
+0069 E4               75                                     clr a
+006A 93               76                                     movc a, @a+dptr
+006B F5A0             77                                     mov p2, a
+006D 11A4             78                                     acall lessDelay
+006F D292             79                                     setb p1.2
+0071 22               80                                     ret
+                      81                                     
+0072 C291             82     display7:               clr p1.1
+0074 E4               83                                     clr a
+0075 93               84                                     movc a, @a+dptr
+0076 F5A0             85                                     mov p2, a
+0078 11A4             86                                     acall lessDelay
+007A D291             87                                     setb p1.1
+007C 22               88                                     ret
+                      89                                     
+007D C290             90     display8:               clr p1.0
+007F E4               91                                     clr a
+0080 93               92                                     movc a, @a+dptr
+0081 F5A0             93                                     mov p2, a
+0083 11A4             94                                     acall lessDelay
+0085 D290             95                                     setb p1.0
+0087 22               96                                     ret
+                      97                                     
+                      98                                     
+                      99                                     
+0088 7B05            100     delay:                  mov r3, #05h
+008A 78FF            101     loop3:                  mov r0, #0ffh
+008C 79FF            102     loop2:                  mov r1, #0ffh
+008E D9FE            103     loop1:                  djnz r1, loop1
+0090 D8FA            104                                     djnz r0, loop2
+0092 DBF6            105                                     djnz r3, loop3
+0094 22              106                                     ret
+                     107     
+0095 E4              108     display:                clr a
+0096 93              109                                     movc a, @a+dptr
+0097 F5A0            110                                     mov p2, a
+0099 1188            111                                     acall delay
+009B 119E            112                                     acall off
+009D 22              113                                     ret
+                     114                                     
+009E E4              115     off:                    clr a
+009F F5A0            116                                     mov p2, a
+00A1 11A4            117                                     acall lessDelay
+00A3 22              118                                     ret
+                     119                                     
+00A4 780F            120     lessDelay:              mov r0, #0fh
+00A6 797F            121     loop5:                  mov r1, #127
+00A8 D9FE            122     loop4:                  djnz r1, loop4
+00AA D8FA            123                                     djnz r0, loop5
+A51 MACRO ASSEMBLER  SEVENSEGMENTMULTIPLEXED                                              04/20/2020 18:26:49 PAGE     3
+
+00AC 22              124                                     ret
+                     125                                     
+0500                 126                             org 500h
+0500 FC60DAF2        127                                     numbers: db 11111100b, 01100000b, 11011010b, 11110010b, 011
+                             00110b, 10110110b, 10111110b, 11100000b, 11111110b, 11110110b
+0504 66B6BEE0                
+0508 FEF6                    
+050A 6E              128                                     _H: db 01101110b
+050B 9E              129                                     _E: db 10011110b
+050C 1C              130                                     _L: db 00011100b
+050D FC              131                                     _O: db 11111100b
+050E EE              132                                     _A: db 11101110b
+050F 8E              133                                     _F: db 10001110b
+0510 DA              134                                     _Z: db 11011010b
+0511 01              135                                     _:      db 00000001b
+                     136                                                     
+                     137                                             
+                     138                                     end
+A51 MACRO ASSEMBLER  SEVENSEGMENTMULTIPLEXED                                              04/20/2020 18:26:49 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0088H   A   
+DISPLAY. . . . . .  C ADDR   0095H   A   
+DISPLAY1 . . . . .  C ADDR   0030H   A   
+DISPLAY2 . . . . .  C ADDR   003BH   A   
+DISPLAY3 . . . . .  C ADDR   0046H   A   
+DISPLAY4 . . . . .  C ADDR   0051H   A   
+DISPLAY5 . . . . .  C ADDR   005CH   A   
+DISPLAY6 . . . . .  C ADDR   0067H   A   
+DISPLAY7 . . . . .  C ADDR   0072H   A   
+DISPLAY8 . . . . .  C ADDR   007DH   A   
+LESSDELAY. . . . .  C ADDR   00A4H   A   
+LOOP1. . . . . . .  C ADDR   008EH   A   
+LOOP2. . . . . . .  C ADDR   008CH   A   
+LOOP3. . . . . . .  C ADDR   008AH   A   
+LOOP4. . . . . . .  C ADDR   00A8H   A   
+LOOP5. . . . . . .  C ADDR   00A6H   A   
+NUMBERS. . . . . .  C ADDR   0500H   A   
+OFF. . . . . . . .  C ADDR   009EH   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+STARTOVER. . . . .  C ADDR   0006H   A   
+_. . . . . . . . .  C ADDR   0511H   A   
+_A . . . . . . . .  C ADDR   050EH   A   
+_E . . . . . . . .  C ADDR   050BH   A   
+_F . . . . . . . .  C ADDR   050FH   A   
+_H . . . . . . . .  C ADDR   050AH   A   
+_L . . . . . . . .  C ADDR   050CH   A   
+_O . . . . . . . .  C ADDR   050DH   A   
+_Z . . . . . . . .  C ADDR   0510H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

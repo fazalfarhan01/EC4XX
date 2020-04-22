@@ -1,0 +1,135 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    04/20/2020  20:38:19  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\serialHello.obj TO .\Objects\serialHello PRINT (.\Listings\serialHello.m51) RAMSIZ
+>> E (256) CODE (0X0000-0XFFFF)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\serialHello.obj (SERIALHELLO)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\serialHello (SERIALHELLO)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         _DATA_GROUP_
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     002DH     UNIT         ?C?LIB_CODE
+            CODE    082DH     0029H     UNIT         ?PR?_MYDATA?SERIALHELLO
+            CODE    0856H     000FH     UNIT         ?PR?INITIALLISEUART?SERIALHELLO
+            CODE    0865H     000EH     UNIT         ?PR?MAIN?SERIALHELLO
+            CODE    0873H     000CH     UNIT         ?C_C51STARTUP
+            CODE    087FH     0008H     UNIT         ?PR?_TRANSMIT?SERIALHELLO
+            CODE    0887H     0006H     UNIT         ?CO?SERIALHELLO
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\serialHello (SERIALHELLO)
+
+
+SEGMENT                                   DATA_GROUP 
+  +--> CALLED SEGMENT                   START    LENGTH
+-------------------------------------------------------
+?C_C51STARTUP                           -----    -----
+  +--> ?PR?MAIN?SERIALHELLO
+
+?PR?MAIN?SERIALHELLO                    -----    -----
+  +--> ?PR?INITIALLISEUART?SERIALHELLO
+  +--> ?CO?SERIALHELLO
+  +--> ?PR?_MYDATA?SERIALHELLO
+
+?PR?_MYDATA?SERIALHELLO                 0008H    0003H
+  +--> ?PR?_TRANSMIT?SERIALHELLO
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\serialHello (SERIALHELLO)
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/20/2020  20:38:19  PAGE 2
+
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        SERIALHELLO
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:0098H.1       PUBLIC        TI
+  C:0865H         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+  C:0856H         PUBLIC        initialliseUART
+  C:082DH         PUBLIC        _myData
+  C:087FH         PUBLIC        _transmit
+  -------         PROC          INITIALLISEUART
+  C:0856H         LINE#         7
+  C:0856H         LINE#         8
+  C:0856H         LINE#         9
+  C:0859H         LINE#         10
+  C:085CH         LINE#         11
+  C:085FH         LINE#         12
+  C:0862H         LINE#         13
+  C:0864H         LINE#         14
+  -------         ENDPROC       INITIALLISEUART
+  -------         PROC          _TRANSMIT
+  D:0007H         SYMBOL        txData
+  C:087FH         LINE#         16
+  C:087FH         LINE#         17
+  C:087FH         LINE#         18
+  C:0881H         LINE#         19
+  C:0884H         LINE#         20
+  C:0886H         LINE#         21
+  -------         ENDPROC       _TRANSMIT
+  -------         PROC          _MYDATA
+  D:0008H         SYMBOL        string
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:082DH         LINE#         23
+  C:0833H         LINE#         24
+  C:0833H         LINE#         26
+  C:084BH         LINE#         27
+  C:084BH         LINE#         28
+  C:084EH         LINE#         29
+  C:0855H         LINE#         30
+  -------         ENDPROC       _MYDATA
+  -------         PROC          MAIN
+  C:0865H         LINE#         34
+  C:0865H         LINE#         35
+  C:0865H         LINE#         36
+  C:0868H         LINE#         37
+  C:0871H         LINE#         38
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        SERIALHELLO
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/20/2020  20:38:19  PAGE 3
+
+
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0800H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0054H BYTE ( 4%) *
+******************************************************************************
+
+Program Size: data=12.0 xdata=0 code=144
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

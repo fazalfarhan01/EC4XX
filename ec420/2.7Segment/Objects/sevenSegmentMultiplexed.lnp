@@ -1,0 +1,4 @@
+".\Objects\sevenSegmentMultiplexed.obj" 
+TO ".\Objects\sevenSegmentMultiplexed" 
+PRINT(".\Listings\sevenSegmentMultiplexed.m51") RAMSIZE(256) 
+CODE( 0X0000-0XFFFF )

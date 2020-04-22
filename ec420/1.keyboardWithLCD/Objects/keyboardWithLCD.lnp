@@ -1,0 +1,4 @@
+".\Objects\keyboardWithLCD.obj" 
+TO ".\Objects\keyboardWithLCD" 
+PRINT(".\Listings\keyboardWithLCD.m51") RAMSIZE(256) 
+CODE( 0X0000-0XFFFF )

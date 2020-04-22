@@ -1,0 +1,226 @@
+A51 MACRO ASSEMBLER  KEYBOARDWITHLCD                                                      04/20/2020 18:32:37 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\keyboardWithLCD.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE keyboardWithLCD.asm SET(SMALL) DEBUG PRINT(.\Listings\keyboardWithLCD.l
+                      st) OBJECT(.\Objects\keyboardWithLCD.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;interfacing 8*8 keyboard
+                       2     
+0000                   3                             org 0000h
+0000 75B000            4     continueReading:mov p3, #00h                                    ;for rows H
+0003 7590FF            5                                     mov p1, #0ffh                                   ;for column
+                             s V
+                       6                                     
+0006 E590              7                                     mov a, p1                                               ;re
+                             ad column
+0008 B4FF02            8                                     cjne a, #0ffh, keyPress                 ;some key pressed
+000B 80F3              9                                     sjmp continueReading
+                      10                                     
+                      11                                     
+000D 75B0FE           12     keyPress:               mov p3, #11111110b                              ;clearing p3.0
+0010 E590             13                                     mov a , p1                                              ;re
+                             ading columns
+0012 B4FF28           14                                     cjne a, #0ffh, keyPressInRow1   ;check if any key press, if
+                              yes, go and find key
+                      15                                     
+0015 75B0FD           16                                     mov p3, #11111101b                              ;clearing p
+                             3.1
+0018 E590             17                                     mov a , p1                                              ;re
+                             ading columns
+001A B4FF25           18                                     cjne a, #0ffh, keyPressInRow2   ;check if any key press, if
+                              yes, go and find key
+                      19                                     
+001D 75B0FB           20                                     mov p3, #11111011b                              ;clearing p
+                             3.2
+0020 E590             21                                     mov a , p1                                              ;re
+                             ading columns
+0022 B4FF22           22                                     cjne a, #0ffh, keyPressInRow3   ;check if any key press, if
+                              yes, go and find key
+                      23                                     
+0025 75B0F7           24                                     mov p3, #11110111b                              ;clearing p
+                             3.3
+0028 E590             25                                     mov a , p1                                              ;re
+                             ading columns
+002A B4FF1F           26                                     cjne a, #0ffh, keyPressInRow4   ;check if any key press, if
+                              yes, go and find key
+                      27                                     
+002D 75B0EF           28                                     mov p3, #11101111b                              ;clearing p
+                             3.1
+0030 E590             29                                     mov a , p1                                              ;re
+                             ading columns
+0032 B4FF1C           30                                     cjne a, #0ffh, keyPressInRow5   ;check if any key press, if
+                              yes, go and find key
+                      31                                     
+0035 75B0DF           32                                     mov p3, #11011111b                              ;clearing p
+                             3.1
+0038 E590             33                                     mov a , p1                                              ;re
+                             ading columns
+003A B4FF19           34                                     cjne a, #0ffh, keyPressInRow6   ;check if any key press, if
+                              yes, go and find key
+                      35                                     
+                      36                                     ;mov p3, #10111111b                             ;clearing p
+                             3.1
+                      37                                     ;mov a , p1                                             ;re
+A51 MACRO ASSEMBLER  KEYBOARDWITHLCD                                                      04/20/2020 18:32:37 PAGE     2
+
+                             ading columns
+                      38                                     ;cjne a, 0ffh, keyPressInRow7   ;check if any key press, if
+                              yes, go and find key
+                      39                                     
+                      40                                     ;mov p3, #01111111b                             ;clearing p
+                             3.1
+                      41                                     ;mov a , p1                                             ;re
+                             ading columns
+                      42                                     ;cjne a, 0ffh, keyPressInRow8   ;check if any key press, if
+                              yes, go and find key
+                      43                                     
+                      44                                     
+003D 900600           45     keyPressInRow1: mov dptr, #row1
+0040 8023             46                                     sjmp findKey
+0042 900608           47     keyPressInRow2: mov dptr, #row2
+0045 801E             48                                     sjmp findKey
+0047 900610           49     keyPressInRow3: mov dptr, #row3
+004A 8019             50                                     sjmp findKey
+004C 900618           51     keyPressInRow4: mov dptr, #row4
+004F 8014             52                                     sjmp findKey
+0051 900620           53     keyPressInRow5: mov dptr, #row5
+0054 800F             54                                     sjmp findKey
+0056 900628           55     keyPressInRow6: mov dptr, #row6
+0059 800A             56                                     sjmp findKey
+005B 900630           57     keyPressInRow7: mov dptr, #row7
+005E 8005             58                                     sjmp findKey
+0060 900630           59     keyPressInRow8: mov dptr, #row8
+0063 8000             60                                     sjmp findKey
+                      61     
+0065 7808             62     findKey:                mov r0, #8
+0067 13               63     repeatAgain:    rrc a
+0068 5003             64                                     jnc found
+006A A3               65                                     inc dptr
+006B D8FA             66                                     djnz r0, repeatAgain
+                      67     
+006D D13A             68     found:                  acall start                             ;selecting 5*7
+006F D13F             69                                     acall lcdOnAndClear             ;subroutine to turn on LCD,
+                              and Cursor, and clear it
+0071 D130             70                                     acall setCursorToFirstLine
+0073 E4               71                                     clr a
+0074 93               72                                     movc a, @a+dptr
+0075 D153             73                                     acall display
+0077 E530             74                                     mov a, 30h
+0079 020667           75                                     ljmp programEnding              ;continueReading or program
+                             Ending
+                      76     
+0600                  77                             org 600h
+0600 30313233         78                                     row1:   db '0','1','2','3','4','5','6','7'
+0604 34353637                
+0608 38394142         79                                     row2:   db '8','9','A','B','C','D','E','F'
+060C 43444546                
+0610 4748494A         80                                     row3:   db 'G','H','I','J','K','L','M','N'
+0614 4B4C4D4E                
+0618 4F505152         81                                     row4:   db 'O','P','Q','R','S','T','U','V'
+061C 53545556                
+0620 5758595A         82                                     row5:   db 'W','X','Y','Z','!','@','#','$'
+0624 21402324                
+0628 255E262A         83                                     row6:   db '%','^','&','*','(',')','_','+'
+062C 28295F2B                
+0630                  84                                     row7:
+0630                  85                                     row8:
+                      86     
+                      87     
+0630 7480             88     setCursorToFirstLine:mov a, #80h
+0632 D148             89                             acall command
+0634 22               90                             ret
+A51 MACRO ASSEMBLER  KEYBOARDWITHLCD                                                      04/20/2020 18:32:37 PAGE     3
+
+                      91     
+0635 74C0             92     setCursorToSecondLine:mov a, #0c0h
+0637 D148             93                             acall command
+0639 22               94                             ret
+                      95     
+063A 7438             96     start:          mov a, #38h             ;selecting 5*7 of both lines
+063C D148             97                             acall command
+063E 22               98                             ret
+                      99                             
+                     100                             
+063F 740F            101     lcdOnAndClear:mov a, #0fh               ;LCD ON, Cursor ON + Blinking
+0641 D148            102                             acall command
+0643 7401            103                             mov a, #01h             ;Clearing Display
+0645 D148            104                             acall command
+0647 22              105                             ret
+                     106                             
+                     107                             
+0648 F5A0            108     command:        mov p2, a               ;sending data to data bus ;port 3
+064A C2B6            109                             clr p3.6                ;clearing RS (Selecting command reg.)
+064C D2B7            110                             setb p3.7               ;enable signal
+064E C2B7            111                             clr p3.7                ;falling edge
+0650 D15E            112                             acall delay
+0652 22              113                             ret
+                     114                             
+                     115                             
+0653 F5A0            116     display:        mov p2, a               ;sending data to data bus ;port 3
+0655 D2B6            117                             setb p3.6               ;setting RS (selecting data register)
+0657 D2B7            118                             setb p3.7               ;enable signal
+0659 C2B7            119                             clr p3.7                ;falling edge
+065B D15E            120                             acall delay
+065D 22              121                             ret
+                     122                             
+065E 78FF            123     delay:          mov r0, #0ffh
+0660 79FF            124             loop2:  mov r1, #0ffh
+0662 D9FE            125             loop1:  djnz r1, loop1
+0664 D8FA            126                             djnz r0, loop2
+0666 22              127                             ret
+                     128     
+                     129     
+0667                 130     programEnding:  
+                     131                                     end
+A51 MACRO ASSEMBLER  KEYBOARDWITHLCD                                                      04/20/2020 18:32:37 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E                T Y P E  V A L U E   ATTRIBUTES
+
+COMMAND . . . . . . .  C ADDR   0648H   A   
+CONTINUEREADING . . .  C ADDR   0000H   A   
+DELAY . . . . . . . .  C ADDR   065EH   A   
+DISPLAY . . . . . . .  C ADDR   0653H   A   
+FINDKEY . . . . . . .  C ADDR   0065H   A   
+FOUND . . . . . . . .  C ADDR   006DH   A   
+KEYPRESS. . . . . . .  C ADDR   000DH   A   
+KEYPRESSINROW1. . . .  C ADDR   003DH   A   
+KEYPRESSINROW2. . . .  C ADDR   0042H   A   
+KEYPRESSINROW3. . . .  C ADDR   0047H   A   
+KEYPRESSINROW4. . . .  C ADDR   004CH   A   
+KEYPRESSINROW5. . . .  C ADDR   0051H   A   
+KEYPRESSINROW6. . . .  C ADDR   0056H   A   
+KEYPRESSINROW7. . . .  C ADDR   005BH   A   
+KEYPRESSINROW8. . . .  C ADDR   0060H   A   
+LCDONANDCLEAR . . . .  C ADDR   063FH   A   
+LOOP1 . . . . . . . .  C ADDR   0662H   A   
+LOOP2 . . . . . . . .  C ADDR   0660H   A   
+P1. . . . . . . . . .  D ADDR   0090H   A   
+P2. . . . . . . . . .  D ADDR   00A0H   A   
+P3. . . . . . . . . .  D ADDR   00B0H   A   
+PROGRAMENDING . . . .  C ADDR   0667H   A   
+REPEATAGAIN . . . . .  C ADDR   0067H   A   
+ROW1. . . . . . . . .  C ADDR   0600H   A   
+ROW2. . . . . . . . .  C ADDR   0608H   A   
+ROW3. . . . . . . . .  C ADDR   0610H   A   
+ROW4. . . . . . . . .  C ADDR   0618H   A   
+ROW5. . . . . . . . .  C ADDR   0620H   A   
+ROW6. . . . . . . . .  C ADDR   0628H   A   
+ROW7. . . . . . . . .  C ADDR   0630H   A   
+ROW8. . . . . . . . .  C ADDR   0630H   A   
+SETCURSORTOFIRSTLINE.  C ADDR   0630H   A   
+SETCURSORTOSECONDLINE  C ADDR   0635H   A   
+START . . . . . . . .  C ADDR   063AH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,85 @@
+A51 MACRO ASSEMBLER  TRIANGULARWAVE                                                       04/20/2020 17:15:32 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\triangularWave.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE triangularWave.asm SET(SMALL) DEBUG PRINT(.\Listings\triangularWave.lst
+                      ) OBJECT(.\Objects\triangularWave.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;sawtooth wave
+                       2     
+0000                   3                             org 0000h
+0000 7400              4     repeatAgain:    mov a, #00h
+0002 F590              5                                     mov p1, a
+0004 113E              6                                     acall delay
+0006 7433              7                                     mov a, #51
+0008 F590              8                                     mov p1, a
+000A 113E              9                                     acall delay
+000C 7466             10                                     mov a, #102
+000E F590             11                                     mov p1, a
+0010 113E             12                                     acall delay
+0012 7499             13                                     mov a, #153
+0014 F590             14                                     mov p1, a
+0016 113E             15                                     acall delay
+                      16                                     ;mov a, #204
+                      17                                     ;mov p1, a
+                      18                                     ;acall delay
+                      19                                     
+0018 04               20     risingEdge:             inc a
+0019 F590             21                                     mov p1, a
+001B B4FFFA           22                                     cjne a, #0ffh, risingEdge
+                      23                                     
+                      24                                     
+001E 14               25     fallingEdge:    dec a
+001F F590             26                                     mov p1, a
+0021 B49AFA           27                                     cjne a, #154, fallingEdge
+                      28                                     
+                      29                                     
+                      30                                     
+                      31                                     ;mov a, #204
+                      32                                     ;mov p1, a
+                      33                                     ;acall delay
+0024 7499             34                                     mov a, #153
+0026 F590             35                                     mov p1, a
+0028 113E             36                                     acall delay
+002A 7466             37                                     mov a, #102
+002C F590             38                                     mov p1, a
+002E 113E             39                                     acall delay
+0030 7433             40                                     mov a, #51
+0032 F590             41                                     mov p1, a
+0034 113E             42                                     acall delay
+0036 7400             43                                     mov a, #00h
+0038 F590             44                                     mov p1, a
+003A 113E             45                                     acall delay
+                      46                                     
+003C 80C2             47                                     sjmp repeatAgain
+                      48                                     
+                      49                                     
+003E 78FF             50     delay:                  mov r0, #0ffh
+0040 D8FE             51     delayLoop1:             djnz r0, delayLoop1
+0042 22               52                                     ret
+                      53     
+                      54     
+                      55                                     end
+A51 MACRO ASSEMBLER  TRIANGULARWAVE                                                       04/20/2020 17:15:32 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   003EH   A   
+DELAYLOOP1 . . . .  C ADDR   0040H   A   
+FALLINGEDGE. . . .  C ADDR   001EH   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+REPEATAGAIN. . . .  C ADDR   0000H   A   
+RISINGEDGE . . . .  C ADDR   0018H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
