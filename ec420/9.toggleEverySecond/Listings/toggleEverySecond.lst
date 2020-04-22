@@ -1,0 +1,64 @@
+C51 COMPILER V9.60.0.0   TOGGLEEVERYSECOND                                                 04/22/2020 21:22:30 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE TOGGLEEVERYSECOND
+OBJECT MODULE PLACED IN .\Objects\toggleEverySecond.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE toggleEverySecond.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\
+                    -Listings\toggleEverySecond.lst) TABS(2) OBJECT(.\Objects\toggleEverySecond.obj)
+
+line level    source
+
+   1          /*XTAL = 11.0592, so every machine cycle has a time period of 1.085 uSec
+   2          ;for a total delay of 1 second, we need 921600 machine cycles
+   3          ;mode 1 in timer is a 16 bit timer so max delay in mode 1 is (65535 - count +1)*1.085*10**-6, that is 71.1
+             -1 mS
+   4          ;we need to run the timer for 14 complete times + 4096 times  set timer 0 to f000h */
+   5          //for a delay 1milliSecond we need 922 iterations. that in hex is 0x39A
+   6          //therefore 65536 - 922 = 64614 = 0xFC66
+   7          
+   8          
+   9          
+  10          #include<reg51.h>
+  11          
+  12          sbit pin = P1^5;
+  13          
+  14          void delay(){
+  15   1          int i;
+  16   1          TMOD = 0x01;
+  17   1          TH0 = 0xFC;
+  18   1          TL0 = 0x66;
+  19   1          TR0 = 1;
+  20   1          for(i=0; i<1000; i++){
+  21   2              TH0 = 0xFC;
+  22   2              TL0 = 0x66;
+  23   2              TR0 = 1;
+  24   2              while(TF0 != 1){
+  25   3                  ;
+  26   3              }
+  27   2              TR0 = 0;
+  28   2              TF0 = 0;
+  29   2          }
+  30   1      }
+  31          
+  32          void main(){
+  33   1          while (1)
+  34   1          {
+  35   2              pin = ~pin;
+  36   2              delay();
+  37   2          }
+  38   1          
+  39   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     48    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
