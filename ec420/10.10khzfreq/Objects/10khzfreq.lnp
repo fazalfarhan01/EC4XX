@@ -1,0 +1,4 @@
+".\Objects\freq10Khz.obj" 
+TO ".\Objects\10khzfreq" 
+PRINT(".\Listings\10khzfreq.m51") RAMSIZE(256) 
+CODE( 0X0000-0XFFFF )

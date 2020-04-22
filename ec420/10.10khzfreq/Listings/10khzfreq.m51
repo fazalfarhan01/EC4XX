@@ -1,0 +1,96 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    04/22/2020  21:53:01  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\freq10Khz.obj TO .\Objects\10khzfreq PRINT (.\Listings\10khzfreq.m51) RAMSIZE (256
+>> ) CODE (0X0000-0XFFFF)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\freq10Khz.obj (FREQ10KHZ)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\10khzfreq (FREQ10KHZ)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0010H     UNIT         ?PR?DELAY?FREQ10KHZ
+            CODE    0810H     000CH     UNIT         ?C_C51STARTUP
+            CODE    081CH     000AH     UNIT         ?PR?MAIN?FREQ10KHZ
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\10khzfreq (FREQ10KHZ)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?FREQ10KHZ
+
+?PR?MAIN?FREQ10KHZ
+  +--> ?PR?DELAY?FREQ10KHZ
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\10khzfreq (FREQ10KHZ)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        FREQ10KHZ
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  C:0800H         PUBLIC        delay
+  C:081CH         PUBLIC        main
+  D:0089H         PUBLIC        TMOD
+  B:0090H.4       PUBLIC        pin
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/22/2020  21:53:01  PAGE 2
+
+
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  -------         PROC          DELAY
+  C:0800H         LINE#         9
+  C:0800H         LINE#         10
+  C:0803H         LINE#         11
+  C:0806H         LINE#         12
+  C:0808H         LINE#         13
+  C:080BH         LINE#         15
+  C:080BH         LINE#         16
+  C:080DH         LINE#         17
+  C:080FH         LINE#         18
+  -------         ENDPROC       DELAY
+  -------         PROC          MAIN
+  C:081CH         LINE#         20
+  C:081CH         LINE#         21
+  C:081FH         LINE#         22
+  C:081FH         LINE#         23
+  C:081FH         LINE#         24
+  C:0821H         LINE#         25
+  C:0824H         LINE#         26
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        FREQ10KHZ
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 001AH BYTE ( 1%) *
+******************************************************************************
+
+Program Size: data=9.0 xdata=0 code=41
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
