@@ -1,0 +1,55 @@
+A51 MACRO ASSEMBLER  SQUAREWAVEUSINGTIMER                                                 04/21/2020 22:30:23 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\squareWaveUsingTimer.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE squareWaveUsingTimer.asm SET(SMALL) DEBUG PRINT(.\Listings\squareWaveUs
+                      ingTimer.lst) OBJECT(.\Objects\squareWaveUsingTimer.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;squareWaveUsingTimer0 in mode 1
+                       2     
+0000                   3                             org 0000h
+0000 758901            4                                     mov tmod, #01h                          ;TMOD in timer mode
+                              1, 16 bit timer
+                       5                                     
+0003 C295              6     repeatAgain:    clr p1.5
+0005 110D              7                                     acall delay
+0007 D295              8                                     setb p1.5
+0009 110D              9                                     acall delay
+000B 80F6             10                                     sjmp repeatAgain
+                      11                                     
+                      12                                     
+000D 758C00           13     delay:                  mov th0, #00h
+0010 758A00           14                                     mov tl0, #00h
+0013 D28C             15                                     setb tr0
+0015 308DFD           16     delayLoop:              jnb tf0, delayLoop
+0018 C28C             17                                     clr tr0
+001A C28D             18                                     clr tf0
+001C 22               19                                     ret
+                      20                                     
+                      21                                     end
+A51 MACRO ASSEMBLER  SQUAREWAVEUSINGTIMER                                                 04/21/2020 22:30:23 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   000DH   A   
+DELAYLOOP. . . . .  C ADDR   0015H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+REPEATAGAIN. . . .  C ADDR   0003H   A   
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

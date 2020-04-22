@@ -1,0 +1,65 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    04/21/2020  22:30:27  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\squareWaveUsingTimer.obj TO .\Objects\squareWaveUsingTimer PRINT (.\Listings\squar
+>> eWaveUsingTimer.m51) RAMSIZE (256) CODE (0X0000-0XFFFF)
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\squareWaveUsingTimer.obj (SQUAREWAVEUSINGTIMER)
+
+
+LINK MAP OF MODULE:  .\Objects\squareWaveUsingTimer (SQUAREWAVEUSINGTIMER)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     001DH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\squareWaveUsingTimer (SQUAREWAVEUSINGTIMER)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        SQUAREWAVEUSINGTIMER
+  C:000DH         SYMBOL        DELAY
+  C:0015H         SYMBOL        DELAYLOOP
+  D:0090H         SYMBOL        P1
+  C:0003H         SYMBOL        REPEATAGAIN
+  B:0088H.5       SYMBOL        TF0
+  D:008CH         SYMBOL        TH0
+  D:008AH         SYMBOL        TL0
+  D:0089H         SYMBOL        TMOD
+  B:0088H.4       SYMBOL        TR0
+  C:0000H         LINE#         4
+  C:0003H         LINE#         6
+  C:0005H         LINE#         7
+  C:0007H         LINE#         8
+  C:0009H         LINE#         9
+  C:000BH         LINE#         10
+  C:000DH         LINE#         13
+  C:0010H         LINE#         14
+  C:0013H         LINE#         15
+  C:0015H         LINE#         16
+  C:0018H         LINE#         17
+  C:001AH         LINE#         18
+  C:001CH         LINE#         19
+  -------         ENDMOD        SQUAREWAVEUSINGTIMER
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 001DH BYTE ( 1%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=29
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/21/2020  22:30:27  PAGE 2
+
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,4 @@
+".\Objects\squareWaveUsingTimer.obj" 
+TO ".\Objects\squareWaveUsingTimer" 
+PRINT(".\Listings\squareWaveUsingTimer.m51") RAMSIZE(256) 
+CODE( 0X0000-0XFFFF )
