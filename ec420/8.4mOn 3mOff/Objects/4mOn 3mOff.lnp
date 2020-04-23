@@ -1,0 +1,4 @@
+".\Objects\4mOn 3mOff.obj" 
+TO ".\Objects\4mOn 3mOff" 
+PRINT(".\Listings\4mOn 3mOff.m51") RAMSIZE(256) 
+CODE( 0X0000-0XFFFF )

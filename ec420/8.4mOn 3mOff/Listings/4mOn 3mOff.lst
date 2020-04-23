@@ -1,0 +1,73 @@
+A51 MACRO ASSEMBLER  4MON_3MOFF                                                           04/23/2020 16:28:25 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\4mOn 3mOff.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE 4mOn 3mOff.asm SET(SMALL) DEBUG PRINT(.\Listings\4mOn 3mOff.lst) OBJECT
+                      (.\Objects\4mOn 3mOff.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;XTAL = 22 Mhz              MC Frequency  = (22*10^6)/12 = 1.833MHz             MC Time Per
+                             iod = (1/MC Freq) = 545.4545 nSec
+                       2     ;OnTime = 4 mSec = 7333.33 ~ 7333 MC
+                       3     ;OffTime = 3 mSec = 5500 MC
+                       4     ;max delay in mode 0 with xtal of 22 MHz = 4.4683636 mSec
+                       5     ;we need 859 in timer 4 mSec            |       00011010 00011011
+                       6     ;and 2692 in timer for 3 mSec           |       01010100 00000100
+                       7     
+                       8     
+0000                   9                     org 0000h
+0000 758900           10                     mov tmod, #00h              ;for timer 0 mode 0
+                      11                     
+0003 D295             12     repeatAgain:    setb p1.5
+0005 110D             13                                     acall onDelay
+                      14                                     
+0007 C295             15                                     clr p1.5
+0009 111D             16                                     acall offDelay
+                      17                                     
+000B 80F6             18                                     sjmp repeatAgain
+                      19                                     
+                      20                                     
+000D 758C1A           21     onDelay:                mov th0, #00011010b
+0010 758A1B           22                                     mov tl0, #00011011b
+0013 D28C             23                                     setb tr0
+0015 308DFD           24     wait:                   jnb tf0, wait
+0018 C28C             25                                     clr tr0
+001A C28D             26                                     clr tf0
+001C 22               27                                     ret
+                      28                                     
+001D 758C54           29     offDelay:               mov th0, #01010100b
+0020 758A04           30                                     mov tl0, #00000100b
+0023 D28C             31                                     setb tr0
+0025 308DFD           32     wait2:                  jnb tf0, wait2
+0028 C28C             33                                     clr tr0
+002A C28D             34                                     clr tf0
+002C 22               35                                     ret
+                      36                                     
+                      37                                     end
+A51 MACRO ASSEMBLER  4MON_3MOFF                                                           04/23/2020 16:28:25 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+OFFDELAY . . . . .  C ADDR   001DH   A   
+ONDELAY. . . . . .  C ADDR   000DH   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+REPEATAGAIN. . . .  C ADDR   0003H   A   
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+WAIT . . . . . . .  C ADDR   0015H   A   
+WAIT2. . . . . . .  C ADDR   0025H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
