@@ -1,0 +1,4 @@
+".\Objects\toggleP2-50ms.obj" 
+TO ".\Objects\toggleP2-50ms" 
+PRINT(".\Listings\toggleP2-50ms.m51") RAMSIZE(256) 
+CODE( 0X0000-0XFFFF )

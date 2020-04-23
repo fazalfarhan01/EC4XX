@@ -1,0 +1,56 @@
+C51 COMPILER V9.60.0.0   TOGGLEP2_50MS                                                     04/23/2020 14:04:59 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE TOGGLEP2_50MS
+OBJECT MODULE PLACED IN .\Objects\toggleP2-50ms.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE toggleP2-50ms.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\toggleP2-50ms.lst) TABS(2) OBJECT(.\Objects\toggleP2-50ms.obj)
+
+line level    source
+
+   1          //to toggle all the bits of p2 continuously every 50ms.Use timer 1 in mode2 configuration with XTAL=11.059
+             -2MHz
+   2          /*max delay in 8bit mode at 11.0592 Mhz is 277.77 microseconds
+   3          for a delay of 200 micro seconds we need 184.32 machine cycles; ~184 MC
+   4          in order to get 184 machine cycles, th1 must be loaded with 72 ie 0x48 */
+   5          #include <reg51.h>
+   6          
+   7          void delay(){
+   8   1          int i;
+   9   1          TH1 = 0X48;
+  10   1          TL1 = 0X48;                 //for a delay of 200 micro seconds
+  11   1          TR1 = 1;
+  12   1          for(i=0; i<250; i++){       //200uS * 250 = 50mS
+  13   2              while (TF1 != 1)
+  14   2              {
+  15   3                  ;
+  16   3              }
+  17   2              TF1 = 0;
+  18   2          }
+  19   1          TR1 = 0;          
+  20   1      }
+  21          
+  22          void main(){
+  23   1          TMOD = 0x20;                //timer 1 in mode 2 configuration
+  24   1          
+  25   1          while (1)
+  26   1          {
+  27   2              P2 = ~P2;
+  28   2              delay();
+  29   2          }
+  30   1          
+  31   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     41    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
