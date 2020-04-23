@@ -1,0 +1,58 @@
+C51 COMPILER V9.60.0.0   SQUAREWAVE                                                        04/23/2020 17:13:53 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE SQUAREWAVE
+OBJECT MODULE PLACED IN .\Objects\squareWave.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE squareWave.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\squareWave.lst) TABS(2) OBJECT(.\Objects\squareWave.obj)
+
+line level    source
+
+   1          /*
+   2          ;generate a square wave of 10 KHz with timer0 in mode2 at p1.3 using interrupt mode. 
+   3          ;Also display a value ‘A’ at P2 and ‘B’ at P0.  Assume XTAL=22MHz
+   4          
+   5          ;for a wave of 10Khz, on time and off time is 50 microSecond
+   6          ;for timer in mode 2 | 8-bit auto reload | 91.66 (92) Machine Cycles are required | so th0 and tl0 must be
+             - loaded with 164 | 0xA4
+   7          */
+   8          
+   9          #include <reg51.h>
+  10          
+  11          sbit pin = P1^3;
+  12          
+  13          void initiallise(){
+  14   1          P1 = 0x00;
+  15   1          TMOD = 0X02;                    //timer 0 in mode 2. 8bit auto reload
+  16   1          TH0 = 164;
+  17   1          TL0 = 164;
+  18   1          IE = 0X82;
+  19   1          TR0 = 1;
+  20   1      }
+  21          
+  22          void wave() interrupt 1 {
+  23   1          pin = ~pin;
+  24   1      }
+  25          
+  26          void main(){
+  27   1          initiallise();
+  28   1          while (1)
+  29   1          {
+  30   2              P2 = 'A';
+  31   2              P0 = 'B';
+  32   2          }
+  33   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     32    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
