@@ -1,3 +1,6 @@
-EC 4th Sem Event 2 Assignments
+# Electronics and Communication Engineering Assignments
+## EC420 - Microcontrollers Programs | AT89C51ED2 | 8051
+## EC450 - Electromagnetics
+***
 
-visit my website <a href="https://fazals.ddns.net" target="_blank">here</a>, for electronics and programming tutorials.
+Visit my website <a href="https://fazals.ddns.net" target="_blank">here</a>, for electronics and programming tutorials.
